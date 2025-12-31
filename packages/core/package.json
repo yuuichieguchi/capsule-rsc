@@ -28,6 +28,16 @@
     "boundary"
   ],
   "license": "MIT",
+  "author": "Yuuichi Eguchi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuuichieguchi/capsule-rsc.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/yuuichieguchi/capsule-rsc#readme",
+  "bugs": {
+    "url": "https://github.com/yuuichieguchi/capsule-rsc/issues"
+  },
   "devDependencies": {
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
