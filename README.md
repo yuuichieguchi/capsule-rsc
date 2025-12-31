@@ -21,6 +21,42 @@ React Server Components (RSC) introduce a new challenge: data must cross from se
 
 CapsuleRSC prevents these issues by enforcing boundaries at every layer.
 
+## FAQ
+
+### How is this different from Next.js Server Actions?
+
+Next.js Server Actions let you call server functions from the client, but they don't enforce boundary safety. You can accidentally return a `Date` object and it silently becomes a string. You can pass a function and get a runtime error.
+
+CapsuleRSC provides **3-layer defense**:
+- **Type-level**: `Serializable` type prevents non-serializable data at compile time
+- **Build-time**: ESLint rules catch violations before you run the code
+- **Runtime**: `assertSerializable` fails fast with clear error messages
+
+### How is this different from tRPC?
+
+tRPC focuses on **type-safe API calls** between client and server. It's excellent for that purpose.
+
+CapsuleRSC focuses on **RSC boundary serialization safety**. It ensures that data crossing the server/client boundary is always serializable.
+
+They solve different problems and can be used together.
+
+### Isn't HttpCapability just a fetch wrapper?
+
+Yes, but that's the point. **Capability Injection** is a form of Dependency Injection:
+
+1. **Testability**: Mock `HttpCapability` in tests without mocking global `fetch`
+2. **Explicitness**: All side effects are visible in the function signature
+3. **Enforcement**: ESLint forbids direct `fetch()` in server files, forcing you to use capabilities
+
+```typescript
+// ❌ Forbidden in server files (ESLint error)
+const res = await fetch('https://api.example.com/data');
+
+// ✅ Allowed: explicit capability usage
+const http = new HttpCapability({ allowedHosts: ['api.example.com'] });
+const res = await http.get('https://api.example.com/data');
+```
+
 ## Packages
 
 | Package | Description |
