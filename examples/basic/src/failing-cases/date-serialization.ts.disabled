@@ -1,0 +1,45 @@
+"use server";
+
+/**
+ * INTENTIONAL FAILING CASE: Date Serialization Error
+ *
+ * This file demonstrates what happens when you try to pass
+ * a non-serializable value (Date) across the server/client boundary.
+ *
+ * To test: Rename this file to .ts and run the demo.
+ * Expected error: SerializationError at path "$.createdAt"
+ */
+
+import { renderToPayload, type ServerElement } from '@capsulersc/runtime';
+
+export function renderWithDate() {
+  const element: ServerElement = {
+    type: 'UserProfile',
+    props: {
+      name: 'John Doe',
+      // ERROR: Date is not serializable!
+      // This will throw SerializationError when renderToPayload is called
+      createdAt: new Date(),
+    },
+  };
+
+  // This line will throw:
+  // SerializationError: Non-plain object (Date) is not serializable at path "$.createdAt"
+  return renderToPayload(element);
+}
+
+/**
+ * FIX: Convert Date to a serializable format
+ *
+ * export function renderWithDateFixed() {
+ *   const element: ServerElement = {
+ *     type: 'UserProfile',
+ *     props: {
+ *       name: 'John Doe',
+ *       createdAt: Date.now(),  // number - serializable!
+ *       // OR: createdAt: new Date().toISOString(), // string - serializable!
+ *     },
+ *   };
+ *   return renderToPayload(element);
+ * }
+ */

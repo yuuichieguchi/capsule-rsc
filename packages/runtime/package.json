@@ -1,0 +1,37 @@
+{
+  "name": "@capsulersc/runtime",
+  "version": "0.0.1",
+  "description": "Serializable payload runtime for CapsuleRSC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "rsc",
+    "payload",
+    "serializable"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@capsulersc/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

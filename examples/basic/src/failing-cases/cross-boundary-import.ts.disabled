@@ -1,0 +1,31 @@
+"use server";
+
+/**
+ * INTENTIONAL FAILING CASE: Cross-Boundary Import
+ *
+ * This file demonstrates the ESLint error when a server file
+ * tries to import from a client file.
+ *
+ * To test: Rename this file to .ts and run `pnpm lint`.
+ * Expected error: "Server file cannot import client file"
+ */
+
+// ESLint error: @capsulersc/no-cross-boundary-import
+// "Server file cannot import client file './Greeting.client'"
+import { displayGreeting } from '../client/components/Greeting.client.js';
+
+export function tryToUseClientCode() {
+  // This would be a boundary violation!
+  // Server code should not directly call client code.
+  // displayGreeting(payload);
+}
+
+/**
+ * The correct pattern:
+ *
+ * 1. Server renders to SerializablePayload
+ * 2. Payload is sent to client via network/serialization
+ * 3. Client hydrates and displays the payload
+ *
+ * There is no direct import between server and client files.
+ */

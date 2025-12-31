@@ -1,0 +1,22 @@
+{
+  "name": "@capsulersc/example-basic",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Basic example demonstrating CapsuleRSC boundary enforcement",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "demo": "node --loader ts-node/esm src/demo.ts"
+  },
+  "dependencies": {
+    "@capsulersc/core": "workspace:*",
+    "@capsulersc/runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@capsulersc/compiler": "workspace:*",
+    "typescript": "^5.7.2",
+    "ts-node": "^10.9.2"
+  }
+}

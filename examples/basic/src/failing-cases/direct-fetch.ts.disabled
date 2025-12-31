@@ -1,0 +1,45 @@
+"use server";
+
+/**
+ * INTENTIONAL FAILING CASE: Direct fetch() in Server File
+ *
+ * This file demonstrates the ESLint error when you use fetch()
+ * directly in a server file instead of using caps.http.
+ *
+ * To test: Rename this file to .ts and run `pnpm lint`.
+ * Expected error: "Direct fetch() is forbidden in server files. Use caps.http instead."
+ */
+
+import type { Caps } from '@capsulersc/core';
+
+// BAD: Direct fetch is forbidden in server files
+export async function fetchUserBad(userId: string) {
+  // ESLint error: @capsulersc/no-direct-fetch
+  // "Direct fetch() is forbidden in server files. Use caps.http instead."
+  const response = await fetch(`https://api.example.com/users/${userId}`);
+  return response.json();
+}
+
+/**
+ * FIX: Use caps.http instead
+ *
+ * export async function fetchUserGood(caps: Caps, userId: string) {
+ *   const user = await caps.http.get(`https://api.example.com/users/${userId}`);
+ *   return user;
+ * }
+ */
+
+// Also forbidden: process.env direct access
+export function getApiKey() {
+  // ESLint error: @capsulersc/no-process-env
+  // "Direct process.env access is forbidden in server files."
+  return process.env.API_KEY;
+}
+
+/**
+ * FIX: Use injected config instead
+ *
+ * export function getApiKeyGood(config: { apiKey: string }) {
+ *   return config.apiKey;
+ * }
+ */
