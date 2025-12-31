@@ -29,20 +29,22 @@ CapsuleRSC prevents these issues by enforcing boundaries at every layer.
 | `@capsulersc/compiler` | ESLint plugin for boundary enforcement |
 | `@capsulersc/runtime` | Serializable payload processing |
 
-## Quick Start
+## Installation
 
 ```bash
-# Install dependencies
-pnpm install
+npm install @capsulersc/core @capsulersc/compiler @capsulersc/runtime
+```
 
-# Build all packages
-pnpm build
+### ESLint Setup
 
-# Run tests
-pnpm test
+```javascript
+// eslint.config.mjs
+import capsulersc from '@capsulersc/compiler';
 
-# Run linting
-pnpm lint
+export default [
+  ...capsulersc.configs.recommended,
+  // your other configs
+];
 ```
 
 ## Core Concepts
@@ -156,6 +158,20 @@ export function displayGreeting(payload: SerializablePayload) {
 ## Development
 
 ```bash
+# Clone and install
+git clone https://github.com/yuuichieguchi/capsule-rsc.git
+cd capsule-rsc
+pnpm install
+
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test
+
+# Run linting
+pnpm lint
+
 # Run tests with coverage
 pnpm test:coverage
 
