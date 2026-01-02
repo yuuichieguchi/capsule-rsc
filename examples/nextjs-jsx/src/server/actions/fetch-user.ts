@@ -100,5 +100,3 @@ async function fetchUserHandler(input: unknown): Promise<UserData> {
 
 // Register the action
 registerAction('fetchUser', fetchUserHandler);
-
-export type { FetchUserInput, UserData };

@@ -78,6 +78,3 @@ export async function renderGreeting(
 
   return payload;
 }
-
-// Export the input type for consumers
-export type { GetGreetingInput };

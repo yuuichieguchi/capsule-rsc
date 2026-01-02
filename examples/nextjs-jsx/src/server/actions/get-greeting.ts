@@ -64,6 +64,3 @@ async function getGreetingHandler(input: unknown): Promise<GetGreetingOutput> {
 
 // Register the action with @capsulersc/core
 registerAction('getGreeting', getGreetingHandler);
-
-// Export types for consumers
-export type { GetGreetingInput, GetGreetingOutput };
