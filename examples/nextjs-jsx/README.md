@@ -8,6 +8,7 @@ A Next.js App Router example demonstrating the complete @capsulersc workflow for
 - `registerAction` - Register server actions
 - `invokeAction` - Call registered actions
 - `LogCapability` - Structured logging
+- `HttpCapability` - HTTP requests with host allowlist
 - `Serializable` type - Type safety for boundary crossing
 
 ### @capsulersc/runtime
@@ -29,7 +30,8 @@ src/
 │   └── types.ts              # Shared types (no directive)
 ├── server/
 │   ├── actions/
-│   │   └── get-greeting.ts   # "use server" - registerAction, LogCapability
+│   │   ├── get-greeting.ts   # "use server" - registerAction, LogCapability
+│   │   └── fetch-user.ts     # "use server" - HttpCapability, HttpError
 │   └── components/
 │       └── Greeting.server.ts # "use server" - invokeAction, renderToPayload
 ├── client/
@@ -80,6 +82,9 @@ pnpm --filter @capsulersc/example-nextjs-jsx lint
 
 ### `src/server/actions/get-greeting.ts`
 Demonstrates registering a server action with `registerAction` and using `LogCapability` for structured logging.
+
+### `src/server/actions/fetch-user.ts`
+Demonstrates using `HttpCapability` for secure HTTP requests with host allowlist validation.
 
 ### `src/server/components/Greeting.server.ts`
 Demonstrates building a `ServerElement` tree and converting it to `SerializablePayload` using `renderToPayload`.
