@@ -1,0 +1,29 @@
+{
+  "name": "@capsulersc/example-nextjs-jsx",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Next.js App Router example demonstrating CapsuleRSC with JSX",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@capsulersc/core": "workspace:*",
+    "@capsulersc/runtime": "workspace:*",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@capsulersc/compiler": "workspace:*",
+    "@types/node": "^20.17.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2"
+  }
+}
